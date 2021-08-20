@@ -4,5 +4,5 @@ module.exports = {
   devServer: {
     disableHostCheck: true
   },
-  publicPath: ENV === "development" ? "" : "/home_page/", // 关键代码
+  publicPath: ENV === "development" ? "" : "/token/", // 关键代码   token就是仓库名
 }
