@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-06-06 20:40:04
+ * @LastEditTime: 2021-08-23 14:49:35
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \token\src\App.vue
+-->
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
@@ -34,28 +42,22 @@ import md5 from 'js-md5'
 export default {
   name: 'App'
 }
-// function token (salt, num = 0) {
-//   const date = Date.now()
-//   const minute = Math.floor(date / 60000) + num
-//   const tokenStr = md5(minute + salt)
-//   const __token = parseInt(tokenStr, 16) % 1000000
-//   return __token
-// }
-
-// console.log(token('123'))
-
-console.log(md5('123'))
-
-// function ifToken (salt, __token, errorValue = 2) {
-//   let __errorValue = -errorValue
-//   const maxErrorValue = errorValue + 1
-//   while (__errorValue++ !== maxErrorValue) {
-//     if (token(salt, __errorValue) === __token) {
-//       return true
-//     }
-//   }
-//   return false
-// }
-
-// console.log(ifToken('111', token('111')))
+function token (salt, num = 0) {
+  const date = Date.now()
+  const minute = Math.floor(date / 30000) + num
+  const tokenStr = md5(minute + salt)
+  const __token = parseInt(tokenStr, 16) % 1000000 + ''
+  return __token.padStart(6, '0')
+}
+function ifToken (salt, __token, errorValue = 4) {
+  let __errorValue = -errorValue - 1
+  const maxErrorValue = errorValue
+  while (__errorValue++ !== maxErrorValue) {
+    if (token(salt, __errorValue) === __token) {
+      return true
+    }
+  }
+  return false
+}
+console.log(ifToken(token('11'), '123'))
 </script>
