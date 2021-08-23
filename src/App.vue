@@ -1,4 +1,12 @@
 <!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2021-06-06 20:40:04
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-08-23 15:09:31
+-->
+<!--
  * @Author: your name
  * @Date: 2021-06-06 20:40:04
  * @LastEditTime: 2021-08-23 14:49:35
@@ -42,22 +50,39 @@ import md5 from 'js-md5'
 export default {
   name: 'App'
 }
-function token (salt, num = 0) {
+/**
+ * @name: 
+ * @test: 根据盐值和当前时间戳生成纯数字验证码
+ * @msg: 
+ * @param {String} salt 盐值
+ * @param {Number} [num = 0] 模拟误差30s次数
+ * @return {String}
+ */
+function genToken (salt, num = 0) {
   const date = Date.now()
   const minute = Math.floor(date / 30000) + num
   const tokenStr = md5(minute + salt)
   const __token = parseInt(tokenStr, 16) % 1000000 + ''
   return __token.padStart(6, '0')
 }
-function ifToken (salt, __token, errorValue = 4) {
+/**
+ * @name: 
+ * @test: 根据盐值和验证码判断是否正确
+ * @msg: 
+ * @param {String} salt 盐值
+ * @param {String} __token 
+ * @param {Number} [errorValue = 4] 误差30s次数范围
+ * @return {Boolean}
+ */
+function isToken (salt, __token, errorValue = 4) {
   let __errorValue = -errorValue - 1
   const maxErrorValue = errorValue
   while (__errorValue++ !== maxErrorValue) {
-    if (token(salt, __errorValue) === __token) {
+    if (genToken(salt, __errorValue) === __token) {
       return true
     }
   }
   return false
 }
-console.log(ifToken(token('11'), '123'))
+console.log(isToken(token('11'), '123'))
 </script>
