@@ -4,14 +4,14 @@
  * @Author: CK
  * @Date: 2021-08-23 15:25:32
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-23 16:58:14
+ * @LastEditTime: 2021-08-27 00:40:03
  */
 /**
  * @test: 根据盐值和当前时间戳生成纯数字验证码
  * @param {String} salt 盐值
  * @param {Function} coding 编码函数
  * @param {Number} [num = 0] 模拟误差30s次数
- * @return {Object} [token, time] token:验证码 time:距离下一次30s的毫秒数
+ * @return {Object} [token, time] token:验证码 time:距离下一次30s的毫秒数????
  */
 export function genToken (salt, coding, num = 0) {
   const date = Date.now()
