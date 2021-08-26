@@ -4,7 +4,7 @@
  * @Author: CK
  * @Date: 2021-08-23 15:25:32
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-08-23 16:48:08
+ * @LastEditTime: 2021-08-23 16:58:14
  */
 /**
  * @test: 根据盐值和当前时间戳生成纯数字验证码
